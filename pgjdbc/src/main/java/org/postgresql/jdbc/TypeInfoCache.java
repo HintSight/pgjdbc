@@ -91,7 +91,11 @@ public class TypeInfoCache implements TypeInfo {
       {"varchar", Oid.VARCHAR, Types.VARCHAR, "java.lang.String", Oid.VARCHAR_ARRAY},
       {"text", Oid.TEXT, Types.VARCHAR, "java.lang.String", Oid.TEXT_ARRAY},
       {"name", Oid.NAME, Types.VARCHAR, "java.lang.String", Oid.NAME_ARRAY},
-      {"bytea", Oid.BYTEA, Types.BINARY, "[B", Oid.BYTEA_ARRAY},
+
+//    @author HS - map sqltype -4 to LONGVARBINAR instead
+//      {"bytea", Oid.BYTEA, Types.BINARY, "[B", Oid.BYTEA_ARRAY},
+
+      {"bytea", Oid.BYTEA, Types.LONGVARBINARY, "[B", Oid.BYTEA_ARRAY},
       {"bool", Oid.BOOL, Types.BIT, "java.lang.Boolean", Oid.BOOL_ARRAY},
       {"bit", Oid.BIT, Types.BIT, "java.lang.Boolean", Oid.BIT_ARRAY},
       {"date", Oid.DATE, Types.DATE, "java.sql.Date", Oid.DATE_ARRAY},

@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import io.hintsight.PGUtils;
+
 /**
  * Basic query parser infrastructure.
  * Note: This class should not be considered as pgjdbc public API.
@@ -50,6 +52,10 @@ public class Parser {
       boolean isBatchedReWriteConfigured,
       boolean quoteReturningIdentifiers,
       String... returningColumnNames) throws SQLException {
+
+    //@author HS - correct for PG SQL dialect
+    query = PGUtils.getNativeSQL(query);
+
     if (!withParameters && !splitStatements
         && returningColumnNames != null && returningColumnNames.length == 0) {
       return Collections.singletonList(new NativeQuery(query,
