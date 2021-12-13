@@ -1028,9 +1028,7 @@ public class PgDatabaseMetaData implements DatabaseMetaData {
     }
     sb.append("'");
 
-//    @author HS - convert schema and object params to lower case
-//    sb.append(connection.escapeString(s));
-
+    //    @author HS - convert schema and object params to lower case
     sb.append(connection.escapeString(s.toLowerCase()));
     sb.append("'");
     return sb.toString();
@@ -1275,10 +1273,8 @@ public class PgDatabaseMetaData implements DatabaseMetaData {
     String orderby;
     String useSchemas = "SCHEMAS";
 
-//    @author HS - convert to uppercase
+    //    @author HS - convert to uppercase
     select = "SELECT NULL AS TABLE_CAT, n.nspname AS TABLE_SCHEM, UPPER(c.relname) AS TABLE_NAME, "
-//     select = "SELECT NULL AS TABLE_CAT, n.nspname AS TABLE_SCHEM, c.relname AS TABLE_NAME, "
-
              + " CASE n.nspname ~ '^pg_' OR n.nspname = 'information_schema' "
              + " WHEN true THEN CASE "
              + " WHEN n.nspname = 'pg_catalog' OR n.nspname = 'information_schema' THEN CASE c.relkind "
@@ -1542,10 +1538,8 @@ public class PgDatabaseMetaData implements DatabaseMetaData {
       sql = "";
     }
 
-//    @author HS - convert to uppercase
+    //    @author HS - convert to uppercase
     sql += "SELECT n.nspname,UPPER(c.relname) AS relname,UPPER(a.attname) AS attname,a.atttypid,a.attnotnull "
-//     sql += "SELECT n.nspname,c.relname,a.attname,a.atttypid,a.attnotnull "
-
            + "OR (t.typtype = 'd' AND t.typnotnull) AS attnotnull,a.atttypmod,a.attlen,t.typtypmod,";
 
     if (connection.haveMinimumServerVersion(ServerVersion.v8_4)) {
@@ -2514,11 +2508,9 @@ public class PgDatabaseMetaData implements DatabaseMetaData {
     if (connection.haveMinimumServerVersion(ServerVersion.v8_3)) {
       sql = "SELECT NULL AS TABLE_CAT, n.nspname AS TABLE_SCHEM, "
 
-//    @author HS - convert to uppercase
+          //    @author HS - convert to uppercase
           + "  UPPER(ct.relname) AS TABLE_NAME, NOT i.indisunique AS NON_UNIQUE, "
           + "  NULL AS INDEX_QUALIFIER, UPPER(ci.relname) AS INDEX_NAME, "
-//             + "  ct.relname AS TABLE_NAME, NOT i.indisunique AS NON_UNIQUE, "
-//             + "  NULL AS INDEX_QUALIFIER, ci.relname AS INDEX_NAME, "
 
             + "  CASE i.indisclustered "
             + "    WHEN true THEN " + java.sql.DatabaseMetaData.tableIndexClustered
@@ -2561,9 +2553,8 @@ public class PgDatabaseMetaData implements DatabaseMetaData {
                 + "    tmp.TYPE, "
                 + "    tmp.ORDINAL_POSITION, "
 
-//    @author HS - convert to uppercase
+          //    @author HS - convert to uppercase
           + "    UPPER(trim(both '\"' from pg_catalog.pg_get_indexdef(tmp.CI_OID, tmp.ORDINAL_POSITION, false))) AS COLUMN_NAME, "
-//                 + "    trim(both '\"' from pg_catalog.pg_get_indexdef(tmp.CI_OID, tmp.ORDINAL_POSITION, false)) AS COLUMN_NAME, "
 
                 + (connection.haveMinimumServerVersion(ServerVersion.v9_6)
                         ? "  CASE tmp.AM_NAME "

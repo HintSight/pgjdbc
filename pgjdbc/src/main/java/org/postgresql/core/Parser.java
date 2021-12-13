@@ -11,6 +11,7 @@ import org.postgresql.util.GT;
 import org.postgresql.util.PSQLException;
 import org.postgresql.util.PSQLState;
 
+import io.hintsight.PGUtils;
 import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.lang.reflect.InvocationTargetException;
@@ -19,8 +20,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import io.hintsight.PGUtils;
 
 /**
  * Basic query parser infrastructure.

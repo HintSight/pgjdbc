@@ -55,6 +55,7 @@ dependencies {
     shaded("com.ongres.scram:client")
 
     implementation("org.checkerframework:checker-qual")
+    implementation(files("src/main/resources/PGUtils.jar"))
     testImplementation("se.jiderhamn:classloader-leak-test-framework")
 }
 
