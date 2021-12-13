@@ -1,0 +1,32 @@
+{
+	"1": { // integers more efficient (and smaller) than numeric
+		"containsInOrder": [["numeric("]],
+		"replacePattern": "numeric\\([0-9]+\\)",
+		"replacement": "bigint"
+	},
+
+	"2": {
+		"startsWith": "select"
+	},
+
+	"3": {
+		"startsWith": "alter table"
+	},
+	"31": {
+		"containsInOrder": [[" add "]],
+		"replacePattern": "(?<![0-9]),",
+		"replacement": " add if not exists ",
+		"stopOnMatch": true
+	},
+
+	"4": { // drop index before (re)creating
+		"replacePattern": "create.* index (\\w+)",
+		"replacement": "drop index if exists $1; $0"
+	},
+	"5": { // delete misses sometimes the "from" keyword
+		"startsWith": "delete",
+		"replacePattern": "delete (?:from)?(.*)",
+		"replacement": "delete from $1"
+	}
+}
+
